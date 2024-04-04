@@ -3,6 +3,8 @@ extends RigidBody2D
 @export var engine_power = 300
 @export var rotate_speed = 200
 
+@export var bullet: PackedScene
+
 var screen_size;
 
 
@@ -14,9 +16,17 @@ func _integrate_forces(state):
 	_push_ship(state)
 	_teleport_ship_on_boundaries(state)
 	_rotate_ship(state)
+
+
+func _unhandled_key_input(event):
+	if (event.is_action_pressed("shoot")):
+		# TODO: fire a bullet in direction we're facing with a set impulse
+		# 		This bullet will emit a signal when it collides, and the
+		#		asteroids will link to this signal and destroy themselves
+		pass
+
 	
-	
-func _push_ship(state):
+func _push_ship(_state):
 	var impulse_strength = 0
 	if Input.is_action_pressed("move_forward"):
 		impulse_strength += engine_power

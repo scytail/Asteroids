@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://84wdeg6je5ra"]
+
+[ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="1_bob0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fu43"]
+size = Vector2(16, 31)
+
+[node name="Bullet" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5fu43")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bob0x")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)

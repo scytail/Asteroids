@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmt850puws3s5"]
+[gd_scene load_steps=5 format=3 uid="uid://cmt850puws3s5"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bwcwo"]
 [ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="2_8jh06"]
+[ext_resource type="PackedScene" uid="uid://84wdeg6je5ra" path="res://Scenes/bullet.tscn" id="2_sq3wq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8fnmd"]
 absorbent = true
@@ -12,6 +13,7 @@ gravity_scale = 0.0
 linear_damp_mode = 1
 linear_damp = 0.1
 script = ExtResource("1_bwcwo")
+bullet = ExtResource("2_sq3wq")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
