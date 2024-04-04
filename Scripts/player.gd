@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var engine_power = 200
+@export var engine_power = 300
 @export var rotate_speed = 200
 
 var screen_size;
@@ -12,9 +12,7 @@ func _ready():
 
 func _integrate_forces(state):
 	_push_ship(state)
-	
 	_teleport_ship_on_boundaries(state)
-	
 	_rotate_ship(state)
 	
 	
@@ -26,7 +24,7 @@ func _push_ship(state):
 		impulse_strength -= engine_power
 	
 	if impulse_strength != 0:
-		apply_central_impulse(Vector2(cos(rotation), sin(rotation)) * impulse_strength * state.step)
+		apply_central_force(Vector2(sin(rotation), -cos(rotation)) * impulse_strength)
 
 
 func _teleport_ship_on_boundaries(state):

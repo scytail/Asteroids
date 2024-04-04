@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://blw5a4npruwlx"]
+
+[ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_hkrab"]
+[ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="2_nxf5w"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cvdbi"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brrbs"]
+size = Vector2(42.5134, 42.941)
+
+[node name="Asteroid_Circle" type="RigidBody2D"]
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_cvdbi")
+gravity_scale = 0.0
+script = ExtResource("1_hkrab")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.189821, 0.0983934)
+rotation = 0.47822
+shape = SubResource("RectangleShape2D_brrbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nxf5w")
+region_enabled = true
+region_rect = Rect2(0, 256, 64, 64)
