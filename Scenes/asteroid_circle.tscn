@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://blw5a4npruwlx"]
+[gd_scene load_steps=5 format=3 uid="uid://bssdnv4qngu7k"]
 
 [ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_hkrab"]
 [ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="2_nxf5w"]
@@ -13,6 +13,7 @@ size = Vector2(42.5134, 42.941)
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_cvdbi")
 gravity_scale = 0.0
+angular_damp_mode = 1
 script = ExtResource("1_hkrab")
 metadata/_edit_group_ = true
 

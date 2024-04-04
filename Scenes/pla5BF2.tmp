@@ -23,7 +23,3 @@ region_rect = Rect2(448, 0, 64, 64)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -23, -23, 15, 0, 24, 23, 15)
-
-[node name="BulletSpawnLocation" type="Node2D" parent="."]
-visible = false
-position = Vector2(0, -48)

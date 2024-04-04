@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cmt850puws3s5" path="res://Scenes/player.tscn" id="1_21iwi"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_hur88"]
-[ext_resource type="PackedScene" uid="uid://3lv3chyjxwbg" path="res://Scenes/asteroid_square.tscn" id="2_84prt"]
-[ext_resource type="PackedScene" uid="uid://blw5a4npruwlx" path="res://Scenes/asteroid_circle.tscn" id="2_h5ie1"]
+[ext_resource type="PackedScene" uid="uid://cptl663di64h2" path="res://Scenes/asteroid_square.tscn" id="2_84prt"]
+[ext_resource type="PackedScene" uid="uid://bssdnv4qngu7k" path="res://Scenes/asteroid_circle.tscn" id="2_h5ie1"]
 
 [sub_resource type="Curve2D" id="Curve2D_6ryen"]
 _data = {
