@@ -11,3 +11,6 @@ func _ready():
 func _check_boundary_collision(state):
 	if position.x < 0 || position.x > screen_size.x || position.y < 0 || position.y > screen_size.y:
 		queue_free()
+
+func _on_body_entered(body):
+	body.take_damage()

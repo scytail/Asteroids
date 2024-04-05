@@ -5,6 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AsteroidTimer.start()
+	pass
 
 
 func game_over():

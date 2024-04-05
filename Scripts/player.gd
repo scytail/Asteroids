@@ -2,6 +2,7 @@ extends InteractiveEntity
 
 @export var engine_power = 300
 @export var rotate_speed = 200
+@export var max_velocity = 1000
 
 @export var bullet_scene: PackedScene
 
@@ -14,6 +15,7 @@ func _integrate_forces(state):
 	super._integrate_forces(state)
 	_push_ship(state)
 	_rotate_ship(state)
+	_set_max_speed(state)
 
 
 func _unhandled_key_input(event):
@@ -23,12 +25,8 @@ func _unhandled_key_input(event):
 		bullet.rotation = rotation
 		
 		add_sibling(bullet)
-		# TODO: fire a bullet in direction we're facing with a set impulse
-		# 		This bullet will emit a signal when it collides, and the
-		#		asteroids will link to this signal and destroy themselves
-		pass
 
-	
+	  
 func _push_ship(_state):
 	var impulse_strength = 0
 	if Input.is_action_pressed("move_forward"):
@@ -53,3 +51,13 @@ func _rotate_ship(state):
 		state.angular_velocity = rotation_velocity
 	else:
 		angular_velocity = 0
+
+
+func _set_max_speed(state):
+	state.linear_velocity.x = clamp(state.linear_velocity.x, -max_velocity, max_velocity)
+	state.linear_velocity.y = clamp(state.linear_velocity.y, -max_velocity, max_velocity)
+
+
+func take_damage():
+	super.take_damage()
+	get_tree().get_current_scene().game_over()

@@ -10,9 +10,13 @@ bounce = 1.0
 size = Vector2(40.6262, 39.8184)
 
 [node name="Asteroid_Square" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_j3yji")
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 angular_damp_mode = 1
 script = ExtResource("1_22q4c")
 metadata/_edit_group_ = true
@@ -26,3 +30,5 @@ shape = SubResource("RectangleShape2D_brrbs")
 texture = ExtResource("2_5i5h2")
 region_enabled = true
 region_rect = Rect2(128, 256, 64, 64)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

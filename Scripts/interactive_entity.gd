@@ -21,3 +21,6 @@ func _check_boundary_collision(state):
 		state.transform.origin.y = screen_size.y
 	elif position.y > screen_size.y:
 		state.transform.origin.y = 0
+
+func take_damage():
+	queue_free()
