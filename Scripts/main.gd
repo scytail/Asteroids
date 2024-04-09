@@ -2,6 +2,8 @@ extends Node2D
 
 @export var asteroid_scene: Array[PackedScene]
 
+var score: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AsteroidTimer.start()
@@ -11,6 +13,11 @@ func _ready():
 func game_over():
 	$AsteroidTimer.stop()
 	_quit_game()
+
+
+func add_points(points):
+	score += points
+	$HUD.update_score(score)
 
 
 func _unhandled_key_input(event):
