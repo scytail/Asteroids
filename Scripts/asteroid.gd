@@ -9,4 +9,5 @@ func _ready():
 
 
 func _on_body_entered(body):
-	body.take_damage()
+	if (!body.is_in_group("asteroids")):
+		body.take_damage()

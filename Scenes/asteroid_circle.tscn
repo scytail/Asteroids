@@ -9,7 +9,7 @@ bounce = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brrbs"]
 size = Vector2(42.5134, 42.941)
 
-[node name="Asteroid_Circle" type="RigidBody2D"]
+[node name="Asteroid_Circle" type="RigidBody2D" groups=["asteroids"]]
 collision_layer = 2
 collision_mask = 7
 mass = 5.0
