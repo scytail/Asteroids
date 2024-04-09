@@ -27,6 +27,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Asteroids"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_forward={
