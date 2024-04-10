@@ -5,7 +5,7 @@ extends InteractiveEntity
 @export var max_velocity = 1000
 
 @export var bullet_scene: PackedScene
-
+@export var engine_trail_scene: PackedScene
 
 func _ready():
 	super._ready()
@@ -16,6 +16,7 @@ func _integrate_forces(state):
 	_push_ship(state)
 	_rotate_ship(state)
 	_set_max_speed(state)
+	_set_motion_trail(state.linear_velocity)
 
 
 func _unhandled_key_input(event):
@@ -56,6 +57,17 @@ func _rotate_ship(state):
 func _set_max_speed(state):
 	state.linear_velocity.x = clamp(state.linear_velocity.x, -max_velocity, max_velocity)
 	state.linear_velocity.y = clamp(state.linear_velocity.y, -max_velocity, max_velocity)
+
+
+func _set_motion_trail(current_velocity: Vector2):
+	var speed = abs(current_velocity.x + current_velocity.y)
+	var speed_ratio = speed/(max_velocity*2)
+	
+	var trail = engine_trail_scene.instantiate()
+	trail.position = $TrailSpawnLocation.global_position
+	trail.rotation = rotation
+	trail.scale = Vector2(speed_ratio*6,speed_ratio*6)
+	add_sibling(trail)
 
 
 func take_damage():

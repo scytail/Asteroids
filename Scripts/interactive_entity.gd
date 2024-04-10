@@ -8,6 +8,7 @@ var screen_size;
 func _ready():
 	screen_size = get_viewport_rect().size
 
+
 func _integrate_forces(state):
 	_check_boundary_collision(state)
 
@@ -21,6 +22,7 @@ func _check_boundary_collision(state):
 		state.transform.origin.y = screen_size.y
 	elif position.y > screen_size.y:
 		state.transform.origin.y = 0
+
 
 func take_damage():
 	queue_free()

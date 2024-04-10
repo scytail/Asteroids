@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmt850puws3s5"]
+[gd_scene load_steps=6 format=3 uid="uid://cmt850puws3s5"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bwcwo"]
 [ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="2_8jh06"]
 [ext_resource type="PackedScene" uid="uid://bt3xhfsk3hlxs" path="res://Scenes/bullet.tscn" id="2_sq3wq"]
+[ext_resource type="PackedScene" uid="uid://m3ne8424vswe" path="res://Scenes/player_trail.tscn" id="3_g6n0x"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8fnmd"]
 absorbent = true
@@ -15,6 +16,7 @@ linear_damp_mode = 1
 linear_damp = 0.1
 script = ExtResource("1_bwcwo")
 bullet_scene = ExtResource("2_sq3wq")
+engine_trail_scene = ExtResource("3_g6n0x")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -27,3 +29,6 @@ polygon = PackedVector2Array(0, -23, -23, 15, 0, 24, 23, 15)
 
 [node name="BulletSpawnLocation" type="Node2D" parent="."]
 position = Vector2(0, -48)
+
+[node name="TrailSpawnLocation" type="Node2D" parent="."]
+position = Vector2(0, 12)

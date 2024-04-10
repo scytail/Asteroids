@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3ne8424vswe"]
+
+[ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="1_8lfie"]
+[ext_resource type="Script" path="res://Scripts/player_trail.gd" id="2_hn56m"]
+
+[node name="PlayerTrail" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_8lfie")
+region_enabled = true
+region_rect = Rect2(384, 320, 64, 8)
+script = ExtResource("2_hn56m")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
