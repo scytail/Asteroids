@@ -19,6 +19,7 @@ max_contacts_reported = 1
 contact_monitor = true
 angular_damp_mode = 1
 script = ExtResource("1_hkrab")
+drop_item_chance = 0.5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
