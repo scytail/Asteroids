@@ -2,12 +2,12 @@ extends InteractiveEntity
 
 @export var engine_power = 300
 @export var rotate_speed = 200
-@export var max_velocity = 1000
 
+@export var bullet_scale_increment: float = .1
 @export var bullet_scene: PackedScene
 @export var engine_trail_scene: PackedScene
 
-var bullet_scale_modifier = 1
+var _bullet_scale_modifier = 1
 
 
 func _ready():
@@ -18,7 +18,6 @@ func _integrate_forces(state):
 	super._integrate_forces(state)
 	_push_ship(state)
 	_rotate_ship(state)
-	_set_max_speed(state)
 	_set_motion_trail(state.linear_velocity)
 
 
@@ -53,23 +52,23 @@ func _rotate_ship(state):
 		angular_velocity = 0
 
 
-func _set_max_speed(state):
-	state.linear_velocity.x = clamp(state.linear_velocity.x, -max_velocity, max_velocity)
-	state.linear_velocity.y = clamp(state.linear_velocity.y, -max_velocity, max_velocity)
-
-
 func _fire_bullet():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $BulletSpawnLocation.global_position
 	bullet.rotation = rotation
-	bullet.scale = bullet.scale * bullet_scale_modifier
+	
+	# Scaling a rigidbody is apparently a big no-no in godot. Instead, iterate over the children
+	# and scale them all manually, while leaving the main node at a standard scale. Kinda jank.
+	for child in bullet.get_children():
+		if child is Node2D:
+			child.scale *= _bullet_scale_modifier
 	
 	add_sibling(bullet)
 
 
 func _set_motion_trail(current_velocity: Vector2):
 	var speed = abs(current_velocity.x + current_velocity.y)
-	var speed_ratio = speed/(max_velocity*2)
+	var speed_ratio = speed/(max_speed*2)
 	
 	var trail = engine_trail_scene.instantiate()
 	trail.position = $TrailSpawnLocation.global_position
@@ -85,4 +84,4 @@ func take_damage():
 func apply_upgrade(upgrade_type: Enums.upgrade_types):
 	match upgrade_type:
 		Enums.upgrade_types.BULLET_SIZE:
-			bullet_scale_modifier += 1
+			_bullet_scale_modifier += bullet_scale_increment
