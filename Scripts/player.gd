@@ -7,6 +7,9 @@ extends InteractiveEntity
 @export var bullet_scene: PackedScene
 @export var engine_trail_scene: PackedScene
 
+var bullet_scale_modifier = 1
+
+
 func _ready():
 	super._ready()
 	
@@ -21,11 +24,7 @@ func _integrate_forces(state):
 
 func _unhandled_key_input(event):
 	if (event.is_action_pressed("shoot")):
-		var bullet = bullet_scene.instantiate()
-		bullet.position = $BulletSpawnLocation.global_position
-		bullet.rotation = rotation
-		
-		add_sibling(bullet)
+		_fire_bullet()
 
 	  
 func _push_ship(_state):
@@ -59,6 +58,15 @@ func _set_max_speed(state):
 	state.linear_velocity.y = clamp(state.linear_velocity.y, -max_velocity, max_velocity)
 
 
+func _fire_bullet():
+	var bullet = bullet_scene.instantiate()
+	bullet.position = $BulletSpawnLocation.global_position
+	bullet.rotation = rotation
+	bullet.scale = bullet.scale * bullet_scale_modifier
+	
+	add_sibling(bullet)
+
+
 func _set_motion_trail(current_velocity: Vector2):
 	var speed = abs(current_velocity.x + current_velocity.y)
 	var speed_ratio = speed/(max_velocity*2)
@@ -73,3 +81,8 @@ func _set_motion_trail(current_velocity: Vector2):
 func take_damage():
 	super.take_damage()
 	get_tree().get_current_scene().game_over()
+	
+func apply_upgrade(upgrade_type: Enums.upgrade_types):
+	match upgrade_type:
+		Enums.upgrade_types.BULLET_SIZE:
+			bullet_scale_modifier += 1

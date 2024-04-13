@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cptl663di64h2"]
+[gd_scene load_steps=6 format=3 uid="uid://cptl663di64h2"]
 
 [ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_22q4c"]
 [ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="2_5i5h2"]
+[ext_resource type="PackedScene" uid="uid://dy24xnb0l4p5l" path="res://Scenes/item_pickup.tscn" id="2_orwo1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j3yji"]
 bounce = 1.0
@@ -11,7 +12,7 @@ size = Vector2(40.6262, 39.8184)
 
 [node name="Asteroid_Square" type="RigidBody2D" groups=["asteroids"]]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 15
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_j3yji")
 gravity_scale = 0.0
@@ -20,6 +21,7 @@ contact_monitor = true
 angular_damp_mode = 1
 script = ExtResource("1_22q4c")
 drop_item_chance = 0.5
+upgrade_pickup_scene = ExtResource("2_orwo1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -45,6 +45,9 @@ func _on_asteroid_timer_timeout():
 	var velocity = Vector2(randf_range(20,200), randf_range(10,100))
 	asteroid.linear_velocity = velocity.rotated(direction)
 	
+	# Attach the signal
+	asteroid.destroyed.connect(add_points.bind())
+	
 	# Spawn
 	add_child(asteroid)
 

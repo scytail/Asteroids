@@ -5,6 +5,8 @@ extends InteractiveEntity
 @export_range(0,1) var drop_item_chance: float = 1
 @export var upgrade_pickup_scene: PackedScene
 
+signal destroyed(point_value)
+
 
 func _ready():
 	super._ready()
@@ -12,15 +14,17 @@ func _ready():
 
 
 func _on_body_entered(body):
-	if (!body.is_in_group("asteroids")):
+	if (!body.is_in_group("asteroids") && 
+		!body.is_in_group("items")):
 		body.take_damage()
 
 
 func take_damage():
 	super.take_damage()
-	get_tree().get_current_scene().add_points(point_value)
+	destroyed.emit(point_value)
 	if (_should_drop_item()):
-		_spawn_scene(upgrade_pickup_scene)
+		# Can't instantiate scenes from inside a collision event, so we need to defer the init
+		call_deferred("_spawn_scene", upgrade_pickup_scene)
 
 
 func _should_drop_item():
