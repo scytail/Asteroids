@@ -1,13 +1,18 @@
 extends Node2D
 
+
+@export_group("")
 @export var asteroid_scene: Array[PackedScene]
+
+@export_group("Debugger Options")
+@export var disable_asteroid_spawns: bool = false
 
 var score: int
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	$AsteroidTimer.start()
-	pass
+	if (disable_asteroid_spawns):
+		$AsteroidTimer.start()
 
 
 func game_over():
@@ -25,25 +30,41 @@ func _unhandled_key_input(event):
 		_quit_game()
 
 
+func _unhandled_input(event):
+	if OS.is_debug_build():
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				_spawn_asteroid(event.position, 0.0, Vector2())
+
+
 func _on_asteroid_timer_timeout():
-	# Make an asteroid
-	var selected_index = randi_range(0, asteroid_scene.size() - 1)
-	var asteroid = asteroid_scene[selected_index].instantiate()
-	
 	# Retrieve the random location selector (which is bound to the spawn path)
 	var asteroid_spawn_location = $AsteroidSpawnPath/AsteroidSpawnLocation
 	# Set the location along the path (a ratio baetween 0-1) randomly
 	asteroid_spawn_location.progress_ratio = randf()
-	asteroid.position = asteroid_spawn_location.position
+	var location = asteroid_spawn_location.position
 	
 	# Rotate the asteroid
 	var direction = asteroid_spawn_location.rotation + PI/2  # point straight in
 	direction += randf_range(-PI/4, PI/4)
-	asteroid.rotation = direction
 
 	# Set the asteroid velocity
 	var velocity = Vector2(randf_range(20,200), randf_range(10,100))
-	asteroid.linear_velocity = velocity.rotated(direction)
+	velocity = velocity.rotated(direction)
+	
+	_spawn_asteroid(location, direction, velocity)
+
+
+func _spawn_asteroid(location: Vector2, direction: float, velocity: Vector2):
+	# Make an asteroid
+	var selected_index = randi_range(0, asteroid_scene.size() - 1)
+	var asteroid = asteroid_scene[selected_index].instantiate()
+	
+	asteroid.position = location
+	
+	asteroid.rotation = direction
+	
+	asteroid.linear_velocity = velocity
 	
 	# Attach the signal
 	asteroid.destroyed.connect(add_points.bind())

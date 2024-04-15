@@ -1,11 +1,9 @@
 extends InteractiveEntity
 
-@export var velocity: int = 2000
-
 
 func _ready():
 	super._ready()
-	apply_central_impulse(Vector2(sin(rotation), -cos(rotation)) * velocity)
+	apply_central_impulse(Vector2(sin(rotation), -cos(rotation)) * max_speed)
 
 
 func _check_boundary_collision(_state):
