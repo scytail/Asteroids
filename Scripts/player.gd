@@ -1,13 +1,15 @@
 extends InteractiveEntity
 
+@export_group("Player Controls")
 @export var engine_power = 300
 @export var rotate_speed = 200
-
-@export var bullet_scale_increment: float = .1
 @export var bullet_scene: PackedScene
-@export var engine_trail_scene: PackedScene
 
-var _bullet_scale_modifier = 1
+@export_group("Upgrade Modifiers")
+@export var bullet_scale_increment: float = .1
+@export var bullet_scale_limit: Vector2 = Vector2(.1, 3)
+
+var _current_bullet_scale_modifier = 1
 
 
 func _ready():
@@ -18,7 +20,6 @@ func _integrate_forces(state):
 	super._integrate_forces(state)
 	_push_ship(state)
 	_rotate_ship(state)
-	_set_motion_trail(state.linear_velocity)
 
 
 func _unhandled_key_input(event):
@@ -55,26 +56,22 @@ func _rotate_ship(state):
 func _fire_bullet():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $BulletSpawnLocation.global_position
+	# Along with pushing itself forward, we want it to also have the inherent velocity 
+	# of the ship itself
+	bullet.linear_velocity = linear_velocity
+	# Start the bullet out pointing in the direction of the ship. It'll handle pointing from there
 	bullet.rotation = rotation
 	
 	# Scaling a rigidbody is apparently a big no-no in godot. Instead, iterate over the children
 	# and scale them all manually, while leaving the main node at a standard scale. Kinda jank.
 	for child in bullet.get_children():
 		if child is Node2D:
-			child.scale *= _bullet_scale_modifier
+			child.scale *= _current_bullet_scale_modifier
+			var min_scale = Vector2(bullet_scale_limit.x, bullet_scale_limit.x)
+			var max_scale = Vector2(bullet_scale_limit  .y, bullet_scale_limit.y)
+			child.scale = child.scale.clamp(min_scale, max_scale)
 	
 	add_sibling(bullet)
-
-
-func _set_motion_trail(current_velocity: Vector2):
-	var speed = abs(current_velocity.x + current_velocity.y)
-	var speed_ratio = speed/(max_speed*2)
-	
-	var trail = engine_trail_scene.instantiate()
-	trail.position = $TrailSpawnLocation.global_position
-	trail.rotation = rotation
-	trail.scale = Vector2(speed_ratio*6,speed_ratio*6)
-	add_sibling(trail)
 
 
 func take_damage():
@@ -84,4 +81,4 @@ func take_damage():
 func apply_upgrade(upgrade_type: Enums.upgrade_types):
 	match upgrade_type:
 		Enums.upgrade_types.BULLET_SIZE:
-			_bullet_scale_modifier += bullet_scale_increment
+			_current_bullet_scale_modifier += bullet_scale_increment
