@@ -5,30 +5,33 @@
 [ext_resource type="PackedScene" uid="uid://cptl663di64h2" path="res://Scenes/asteroid_square.tscn" id="2_84prt"]
 [ext_resource type="PackedScene" uid="uid://bssdnv4qngu7k" path="res://Scenes/asteroid_circle.tscn" id="2_h5ie1"]
 [ext_resource type="PackedScene" uid="uid://g2r4kyl6n1aq" path="res://Scenes/hud.tscn" id="5_lfh4m"]
-[ext_resource type="Texture2D" uid="uid://bywdr4gxw8xwr" path="res://Images/bg_stars_1.png" id="6_tkte7"]
-[ext_resource type="Texture2D" uid="uid://dcfur51nhqea4" path="res://Images/background.png" id="6_ub4pb"]
-[ext_resource type="Texture2D" uid="uid://c2yatkkt45tyb" path="res://Images/bg_stars_2.png" id="7_uwkvq"]
+[ext_resource type="Texture2D" uid="uid://cpyhrjagy13l2" path="res://Images/backdrop.png" id="6_5jfn5"]
+[ext_resource type="Texture2D" uid="uid://djaq470woidj5" path="res://Images/plasma_1.png" id="7_ihbp8"]
+[ext_resource type="Texture2D" uid="uid://c272u6wofh5tc" path="res://Images/plasma_2.png" id="8_p2lnb"]
 
 [sub_resource type="Curve2D" id="Curve2D_6ryen"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, 0, 2048, 1024, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, 0, 2048, 1208, 0, 0, 0, 0, 0, 1208, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("asteroid_spawn_location")]
 script = ExtResource("1_hur88")
+asteroid_spawn_location = NodePath("Player/Camera2D/AsteroidSpawnPath/AsteroidSpawnLocation")
 asteroid_scene = Array[PackedScene]([ExtResource("2_h5ie1"), ExtResource("2_84prt")])
 
 [node name="Player" parent="." instance=ExtResource("1_21iwi")]
-position = Vector2(1024, 576)
+position = Vector2(960, 540)
+max_speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 
-[node name="AsteroidSpawnPath" type="Path2D" parent="."]
+[node name="AsteroidSpawnPath" type="Path2D" parent="Player/Camera2D"]
+position = Vector2(-1024, -604)
 curve = SubResource("Curve2D_6ryen")
 
-[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidSpawnPath"]
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="Player/Camera2D/AsteroidSpawnPath"]
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 
@@ -37,31 +40,31 @@ curve = SubResource("Curve2D_6ryen")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1920, 1080)
+motion_mirroring = Vector2(3993.7, 1123.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxBackground"]
 scale = Vector2(2.08, 1.04)
-texture = ExtResource("6_ub4pb")
+texture = ExtResource("6_5jfn5")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.7, 0.7)
-motion_mirroring = Vector2(1920, 1080)
+motion_mirroring = Vector2(3993.7, 1123.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(2.08, 1.04)
-texture = ExtResource("6_tkte7")
+texture = ExtResource("7_ihbp8")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1920, 1080)
+motion_mirroring = Vector2(3993.7, 1123.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 scale = Vector2(2.08, 1.04)
-texture = ExtResource("7_uwkvq")
+texture = ExtResource("8_p2lnb")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
 

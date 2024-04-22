@@ -14,7 +14,7 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_ie2p7")
-max_speed = 200
+max_speed = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_h72e4")

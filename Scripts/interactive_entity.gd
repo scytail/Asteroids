@@ -2,7 +2,7 @@ extends RigidBody2D
 
 class_name InteractiveEntity
 
-@export var max_speed = 1000
+@export var max_speed = 100
 
 var screen_size;
 
@@ -12,7 +12,7 @@ func _ready():
 
 
 func _integrate_forces(state):
-	_check_boundary_collision(state)
+	#_check_boundary_collision(state)
 	_set_max_speed(state)
 
 

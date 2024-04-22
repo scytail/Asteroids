@@ -47,7 +47,7 @@ gradient = SubResource("Gradient_kucfv")
 joint_mode = 1
 antialiased = true
 script = ExtResource("4_acn3i")
-length = 100
+length = 200
 
 [node name="TrailOriginR" type="Marker2D" parent="."]
 position = Vector2(10, 20)
@@ -58,4 +58,4 @@ gradient = SubResource("Gradient_kucfv")
 joint_mode = 1
 antialiased = true
 script = ExtResource("4_acn3i")
-length = 100
+length = 200

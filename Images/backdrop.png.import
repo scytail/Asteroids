@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2yatkkt45tyb"
-path="res://.godot/imported/bg_stars_2.png-2d957f6e66b0f89ccc782246f3cba514.ctex"
+uid="uid://cpyhrjagy13l2"
+path="res://.godot/imported/backdrop.png-7b41e4e924573fa98e861598f4d847e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/bg_stars_2.png"
-dest_files=["res://.godot/imported/bg_stars_2.png-2d957f6e66b0f89ccc782246f3cba514.ctex"]
+source_file="res://Images/backdrop.png"
+dest_files=["res://.godot/imported/backdrop.png-7b41e4e924573fa98e861598f4d847e1.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

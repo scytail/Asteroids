@@ -2,6 +2,7 @@ extends Node2D
 
 
 @export_group("")
+@export var asteroid_spawn_location: PathFollow2D
 @export var asteroid_scene: Array[PackedScene]
 
 @export_group("Debugger Options")
@@ -11,7 +12,7 @@ var score: int
 
 
 func _ready():
-	if (disable_asteroid_spawns):
+	if (!disable_asteroid_spawns):
 		$AsteroidTimer.start()
 
 
@@ -31,18 +32,16 @@ func _unhandled_key_input(event):
 
 
 func _unhandled_input(event):
-	if OS.is_debug_build():
+	if OS.is_debug_build() && disable_asteroid_spawns:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				_spawn_asteroid(event.position, 0.0, Vector2())
 
 
 func _on_asteroid_timer_timeout():
-	# Retrieve the random location selector (which is bound to the spawn path)
-	var asteroid_spawn_location = $AsteroidSpawnPath/AsteroidSpawnLocation
 	# Set the location along the path (a ratio baetween 0-1) randomly
 	asteroid_spawn_location.progress_ratio = randf()
-	var location = asteroid_spawn_location.position
+	var location = asteroid_spawn_location.global_position
 	
 	# Rotate the asteroid
 	var direction = asteroid_spawn_location.rotation + PI/2  # point straight in

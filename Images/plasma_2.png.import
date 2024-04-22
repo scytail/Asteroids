@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bywdr4gxw8xwr"
-path="res://.godot/imported/bg_stars_1.png-5dcddd847219bd2381d61d8c1b3f4a3f.ctex"
+uid="uid://c272u6wofh5tc"
+path="res://.godot/imported/plasma_2.png-390c014a17ff4ea12dc259e5c74d49ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/bg_stars_1.png"
-dest_files=["res://.godot/imported/bg_stars_1.png-5dcddd847219bd2381d61d8c1b3f4a3f.ctex"]
+source_file="res://Images/plasma_2.png"
+dest_files=["res://.godot/imported/plasma_2.png-390c014a17ff4ea12dc259e5c74d49ab.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
