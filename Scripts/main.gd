@@ -16,6 +16,12 @@ func _ready():
 		$AsteroidTimer.start()
 
 
+func _process(_delta):
+	# have the spawn location "chase" the player without being impacted by any inherited properties
+	# (such as rotation)
+	$AsteroidSpawnPath.position = $Player.position - Vector2(1024, 604)
+
+
 func game_over():
 	$AsteroidTimer.stop()
 	_quit_game()

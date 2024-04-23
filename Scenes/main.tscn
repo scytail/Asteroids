@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bovvsg2h8jhxs"]
+[gd_scene load_steps=11 format=3 uid="uid://bovvsg2h8jhxs"]
 
 [ext_resource type="PackedScene" uid="uid://cmt850puws3s5" path="res://Scenes/player.tscn" id="1_21iwi"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_hur88"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cpyhrjagy13l2" path="res://Images/backdrop.png" id="6_5jfn5"]
 [ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="7_kl61j"]
 [ext_resource type="Texture2D" uid="uid://dqslwx1f0jgnp" path="res://Images/stars_2.png" id="8_m66i3"]
+[ext_resource type="Script" path="res://Scripts/DEBUG_MARKER.gd" id="9_jy0fh"]
 
 [sub_resource type="Curve2D" id="Curve2D_6ryen"]
 _data = {
@@ -17,7 +18,7 @@ point_count = 5
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("asteroid_spawn_location")]
 script = ExtResource("1_hur88")
-asteroid_spawn_location = NodePath("Player/Camera2D/AsteroidSpawnPath/AsteroidSpawnLocation")
+asteroid_spawn_location = NodePath("AsteroidSpawnPath/AsteroidSpawnLocation")
 asteroid_scene = Array[PackedScene]([ExtResource("2_h5ie1"), ExtResource("2_84prt")])
 
 [node name="Player" parent="." instance=ExtResource("1_21iwi")]
@@ -26,12 +27,6 @@ max_speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
-
-[node name="AsteroidSpawnPath" type="Path2D" parent="Player/Camera2D"]
-position = Vector2(-1024, -604)
-curve = SubResource("Curve2D_6ryen")
-
-[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="Player/Camera2D/AsteroidSpawnPath"]
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 
@@ -67,5 +62,19 @@ scale = Vector2(2.08, 1.04)
 texture = ExtResource("8_m66i3")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
+
+[node name="AsteroidSpawnPath" type="Path2D" parent="."]
+position = Vector2(-64, -64)
+curve = SubResource("Curve2D_6ryen")
+
+[node name="DEBUG_RECT" type="ColorRect" parent="AsteroidSpawnPath"]
+offset_right = 2048.0
+offset_bottom = 1207.0
+color = Color(1, 0, 0, 0.254902)
+
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidSpawnPath"]
+
+[node name="DEBUG_MARKER" type="Marker2D" parent="AsteroidSpawnPath/AsteroidSpawnLocation"]
+script = ExtResource("9_jy0fh")
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
