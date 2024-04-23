@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bssdnv4qngu7k" path="res://Scenes/asteroid_circle.tscn" id="2_h5ie1"]
 [ext_resource type="PackedScene" uid="uid://g2r4kyl6n1aq" path="res://Scenes/hud.tscn" id="5_lfh4m"]
 [ext_resource type="Texture2D" uid="uid://cpyhrjagy13l2" path="res://Images/backdrop.png" id="6_5jfn5"]
-[ext_resource type="Texture2D" uid="uid://djaq470woidj5" path="res://Images/plasma_1.png" id="7_ihbp8"]
-[ext_resource type="Texture2D" uid="uid://c272u6wofh5tc" path="res://Images/plasma_2.png" id="8_p2lnb"]
+[ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="7_kl61j"]
+[ext_resource type="Texture2D" uid="uid://dqslwx1f0jgnp" path="res://Images/stars_2.png" id="8_m66i3"]
 
 [sub_resource type="Curve2D" id="Curve2D_6ryen"]
 _data = {
@@ -40,7 +40,7 @@ curve = SubResource("Curve2D_6ryen")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(3993.7, 1123.3)
+motion_mirroring = Vector2(7987, 2246)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxBackground"]
 scale = Vector2(2.08, 1.04)
@@ -54,7 +54,7 @@ motion_mirroring = Vector2(3993.7, 1123.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(2.08, 1.04)
-texture = ExtResource("7_ihbp8")
+texture = ExtResource("7_kl61j")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
 
@@ -64,7 +64,7 @@ motion_mirroring = Vector2(3993.7, 1123.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 scale = Vector2(2.08, 1.04)
-texture = ExtResource("8_p2lnb")
+texture = ExtResource("8_m66i3")
 centered = false
 region_rect = Rect2(0, 0, 1000, 1000)
 
