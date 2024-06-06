@@ -1,6 +1,6 @@
+class_name InteractiveEntity
 extends RigidBody2D
 
-class_name InteractiveEntity
 
 @export var max_speed = 100
 

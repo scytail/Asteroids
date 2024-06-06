@@ -23,6 +23,8 @@ asteroid_scene = Array[PackedScene]([ExtResource("2_h5ie1"), ExtResource("2_84pr
 
 [node name="Player" parent="." instance=ExtResource("1_21iwi")]
 position = Vector2(960, 540)
+engine_power = 300
+rotate_speed = 200
 max_speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -68,6 +70,7 @@ position = Vector2(-64, -64)
 curve = SubResource("Curve2D_6ryen")
 
 [node name="DEBUG_RECT" type="ColorRect" parent="AsteroidSpawnPath"]
+visible = false
 offset_right = 2048.0
 offset_bottom = 1207.0
 color = Color(1, 0, 0, 0.254902)
@@ -75,6 +78,7 @@ color = Color(1, 0, 0, 0.254902)
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidSpawnPath"]
 
 [node name="DEBUG_MARKER" type="Marker2D" parent="AsteroidSpawnPath/AsteroidSpawnLocation"]
+visible = false
 script = ExtResource("9_jy0fh")
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

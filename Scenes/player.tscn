@@ -23,8 +23,12 @@ gravity_scale = 0.0
 linear_damp_mode = 1
 linear_damp = 0.1
 script = ExtResource("1_bwcwo")
+engine_power = null
+rotate_speed = null
 bullet_scene = ExtResource("2_sq3wq")
+bullet_scale_increment = null
 bullet_scale_limit = Vector2(1, 2.5)
+max_speed = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -6,11 +6,8 @@ extends InteractiveEntity
 @export var bullet_scene: PackedScene
 
 @export_group("Upgrade Modifiers")
-@export var bullet_scale_increment: float = .1
-@export var bullet_scale_limit: Vector2 = Vector2(.1, 3)
 
-var _current_bullet_scale_modifier = 1
-
+var bullet_modifier_strategies: Array[BaseModifierStrategy] = []
 
 func _ready():
 	super._ready()
@@ -62,14 +59,9 @@ func _fire_bullet():
 	# Start the bullet out pointing in the direction of the ship. It'll handle pointing from there
 	bullet.rotation = rotation
 	
-	# Scaling a rigidbody is apparently a big no-no in godot. Instead, iterate over the children
-	# and scale them all manually, while leaving the main node at a standard scale. Kinda jank.
-	for child in bullet.get_children():
-		if child is Node2D:
-			child.scale *= _current_bullet_scale_modifier
-			var min_scale = Vector2(bullet_scale_limit.x, bullet_scale_limit.x)
-			var max_scale = Vector2(bullet_scale_limit  .y, bullet_scale_limit.y)
-			child.scale = child.scale.clamp(min_scale, max_scale)
+	# Modify bullet
+	for modifier in bullet_modifier_strategies:
+		modifier.apply_modifier(bullet)
 	
 	add_sibling(bullet)
 
@@ -78,7 +70,6 @@ func take_damage():
 	super.take_damage()
 	get_tree().get_current_scene().game_over()
 	
-func apply_upgrade(upgrade_type: Enums.upgrade_types):
-	match upgrade_type:
-		Enums.upgrade_types.BULLET_SIZE:
-			_current_bullet_scale_modifier += bullet_scale_increment
+	
+func apply_upgrade(modifier: BaseModifierStrategy):
+	bullet_modifier_strategies.append(modifier)

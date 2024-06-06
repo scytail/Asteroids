@@ -1,10 +1,8 @@
 extends InteractiveEntity
 
-
-@export var upgrade_type: Enums.upgrade_types
-
+@export var modifier_strategy: BaseModifierStrategy
 
 func _on_body_entered(body):
 	if body.is_in_group("players"):
-		body.apply_upgrade(upgrade_type)
+		body.apply_upgrade(modifier_strategy)
 		queue_free()
