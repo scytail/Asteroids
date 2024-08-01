@@ -2,28 +2,12 @@ extends Node2D
 
 
 @export_group("")
-@export var asteroid_spawn_location: PathFollow2D
 @export var asteroid_scene: Array[PackedScene]
-
-@export_group("Debugger Options")
-@export var disable_asteroid_spawns: bool = false
 
 var score: int
 
 
-func _ready():
-	if (!disable_asteroid_spawns):
-		$AsteroidTimer.start()
-
-
-func _process(_delta):
-	# have the spawn location "chase" the player without being impacted by any inherited properties
-	# (such as rotation)
-	$AsteroidSpawnPath.position = $Player.position - Vector2(1024, 604)
-
-
 func game_over():
-	$AsteroidTimer.stop()
 	_quit_game()
 
 
@@ -38,26 +22,10 @@ func _unhandled_key_input(event):
 
 
 func _unhandled_input(event):
-	if OS.is_debug_build() && disable_asteroid_spawns:
+	if OS.is_debug_build():
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				_spawn_asteroid(event.position, 0.0, Vector2())
-
-
-func _on_asteroid_timer_timeout():
-	# Set the location along the path (a ratio baetween 0-1) randomly
-	asteroid_spawn_location.progress_ratio = randf()
-	var location = asteroid_spawn_location.global_position
-	
-	# Rotate the asteroid
-	var direction = asteroid_spawn_location.rotation + PI/2  # point straight in
-	direction += randf_range(-PI/4, PI/4)
-
-	# Set the asteroid velocity
-	var velocity = Vector2(randf_range(20,200), randf_range(10,100))
-	velocity = velocity.rotated(direction)
-	
-	_spawn_asteroid(location, direction, velocity)
 
 
 func _spawn_asteroid(location: Vector2, direction: float, velocity: Vector2):
