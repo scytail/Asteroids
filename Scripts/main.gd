@@ -7,6 +7,19 @@ extends Node2D
 var score: int
 
 
+func _ready():
+	# TODO: In the future, we can fire this on a signal
+	$MapGenerator.generateTiles()
+	
+	# FIXME: In the future, we can probably have a specific tile that spawns a player instance for us
+	var centerTile = $MapGenerator.grid.calculateGridCenterTile()
+	var centerPosition = $MapGenerator.grid.tileCoordinatesToGodotUnits(centerTile)
+	# Offset to center of tile
+	centerPosition += Vector2($MapGenerator.grid.tileSize/2.0, $MapGenerator.grid.tileSize/2.0)
+	# Offset to center of player
+	$Player.position = centerPosition - Vector2(24.0, 24.0)
+
+
 func game_over():
 	_quit_game()
 

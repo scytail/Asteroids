@@ -17,7 +17,8 @@ offsets = PackedFloat32Array(0, 0.533333, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.607843, 0, 1, 0.611765, 0.67451, 0, 1, 0)
 
 [node name="Player" type="RigidBody2D" groups=["players"]]
-collision_mask = 10
+collision_layer = 17
+collision_mask = 26
 physics_material_override = SubResource("PhysicsMaterial_8fnmd")
 gravity_scale = 0.0
 linear_damp_mode = 1
@@ -30,6 +31,7 @@ max_speed = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("2_8jh06")
 region_enabled = true
 region_rect = Rect2(448, 0, 64, 64)

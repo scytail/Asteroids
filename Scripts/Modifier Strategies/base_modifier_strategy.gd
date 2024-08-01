@@ -3,5 +3,5 @@ extends Resource
 
 @export var upgrade_text: String = "Base"
 
-func apply_modifier(entity: InteractiveEntity):
+func apply_modifier(_entity: InteractiveEntity):
 	pass
