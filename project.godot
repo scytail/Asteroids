@@ -17,7 +17,8 @@ config/icon="res://Images/icon.svg"
 
 [autoload]
 
-Enums="*res://Scripts/enums.gd"
+Enums="*res://Scripts/globals/enums.gd"
+Setup="*res://Scripts/globals/setup.gd"
 
 [display]
 
