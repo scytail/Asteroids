@@ -38,7 +38,6 @@ rotate_speed = 200
 max_speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource("5_lfh4m")]
 
