@@ -1,14 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cixhjjropckqs"]
+[gd_scene load_steps=4 format=3 uid="uid://cixhjjropckqs"]
 
 [ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="1_2umch"]
 [ext_resource type="Texture2D" uid="uid://ghip6aac1ycf" path="res://Images/dna_logo.png" id="1_kgik4"]
 [ext_resource type="Texture2D" uid="uid://bfo3yplx14nr6" path="res://Images/title_anim.png" id="2_qbwpx"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_gv355"]
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_mgm3w"]
-font_size = 48
 
 [node name="Start Menu" type="MarginContainer"]
 layout_direction = 2
@@ -48,23 +42,21 @@ theme_override_constants/margin_top = 50
 [node name="Menu" type="VBoxContainer" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="New Game Button" type="Label" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
+[node name="New Game Button" type="Button" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
 layout_mode = 2
-text = "New Game
-"
-label_settings = SubResource("LabelSettings_gv355")
+theme_override_font_sizes/font_size = 48
+text = "New Game"
 
-[node name="Quit Button" type="Label" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
+[node name="Button" type="Button" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
 layout_mode = 2
-text = "Quit
-"
-label_settings = SubResource("LabelSettings_mgm3w")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
 
 [node name="CenterContainer2" type="CenterContainer" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 
-[node name="TextureRect" type="TextureRect" parent="HSplitContainer/CenterContainer2"]
+[node name="Ship Animation" type="TextureRect" parent="HSplitContainer/CenterContainer2"]
 layout_mode = 2
 texture = ExtResource("2_qbwpx")
