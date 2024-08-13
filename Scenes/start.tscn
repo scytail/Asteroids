@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cixhjjropckqs"]
+[gd_scene load_steps=5 format=3 uid="uid://cixhjjropckqs"]
 
 [ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="1_2umch"]
 [ext_resource type="Texture2D" uid="uid://ghip6aac1ycf" path="res://Images/dna_logo.png" id="1_kgik4"]
+[ext_resource type="Script" path="res://Scripts/start.gd" id="1_oqhb8"]
 [ext_resource type="Texture2D" uid="uid://bfo3yplx14nr6" path="res://Images/title_anim.png" id="2_qbwpx"]
 
 [node name="Start Menu" type="MarginContainer"]
@@ -13,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_oqhb8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -47,7 +49,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "New Game"
 
-[node name="Button" type="Button" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
+[node name="Quit Button" type="Button" parent="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Quit"
@@ -60,3 +62,6 @@ size_flags_stretch_ratio = 1.5
 [node name="Ship Animation" type="TextureRect" parent="HSplitContainer/CenterContainer2"]
 layout_mode = 2
 texture = ExtResource("2_qbwpx")
+
+[connection signal="pressed" from="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu/New Game Button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu/Quit Button" to="." method="_on_quit_button_pressed"]
