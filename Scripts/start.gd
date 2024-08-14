@@ -3,7 +3,7 @@ extends MarginContainer
 
 
 func _on_new_game_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
 func _on_quit_button_pressed():
