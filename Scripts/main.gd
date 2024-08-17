@@ -22,8 +22,8 @@ func add_points(points):
 
 
 func _unhandled_key_input(event):
-	if(event.is_action_pressed("quit")):
-		_quit_game()
+	if(event.is_action_pressed("pause")):
+		$HUD/Pause.toggle_paused()
 
 
 func _unhandled_input(event):

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cixhjjropckqs"]
 
-[ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="1_2umch"]
-[ext_resource type="Texture2D" uid="uid://ghip6aac1ycf" path="res://Images/dna_logo.png" id="1_kgik4"]
-[ext_resource type="Script" path="res://Scripts/start.gd" id="1_oqhb8"]
-[ext_resource type="Texture2D" uid="uid://bfo3yplx14nr6" path="res://Images/title_anim.png" id="2_qbwpx"]
+[ext_resource type="Script" path="res://Scripts/start.gd" id="1_dsibv"]
+[ext_resource type="Texture2D" uid="uid://dg7txgb6a6aak" path="res://Images/stars.png" id="2_ig2ud"]
+[ext_resource type="Texture2D" uid="uid://ghip6aac1ycf" path="res://Images/dna_logo.png" id="3_ynkw7"]
+[ext_resource type="Texture2D" uid="uid://bfo3yplx14nr6" path="res://Images/title_anim.png" id="4_vi5up"]
 
 [node name="Start Menu" type="MarginContainer"]
 layout_direction = 2
@@ -14,11 +14,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_oqhb8")
+script = ExtResource("1_dsibv")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_2umch")
+texture = ExtResource("2_ig2ud")
 
 [node name="HSplitContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -34,7 +34,7 @@ size_flags_horizontal = 3
 
 [node name="Title" type="TextureRect" parent="HSplitContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_kgik4")
+texture = ExtResource("3_ynkw7")
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -61,7 +61,7 @@ size_flags_stretch_ratio = 1.5
 
 [node name="Ship Animation" type="TextureRect" parent="HSplitContainer/CenterContainer2"]
 layout_mode = 2
-texture = ExtResource("2_qbwpx")
+texture = ExtResource("4_vi5up")
 
 [connection signal="pressed" from="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu/New Game Button" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="HSplitContainer/CenterContainer/VBoxContainer/MarginContainer/Menu/Quit Button" to="." method="_on_quit_button_pressed"]

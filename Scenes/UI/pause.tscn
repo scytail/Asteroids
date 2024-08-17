@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcgq10bumd7td"]
+
+[ext_resource type="Script" path="res://Scripts/pause.gd" id="1_p74ln"]
+[ext_resource type="Shader" path="res://Shaders/pause.gdshader" id="2_kowim"]
+[ext_resource type="Texture2D" uid="uid://dso4lh40ww2tf" path="res://Images/pause_backdrop.png" id="2_odear"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mf4l1"]
+shader = ExtResource("2_kowim")
+shader_parameter/level_of_detail = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_uofpu"]
+font_size = 100
+
+[node name="Pause" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p74ln")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mf4l1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_odear")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="PauseLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Pause
+"
+label_settings = SubResource("LabelSettings_uofpu")
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
