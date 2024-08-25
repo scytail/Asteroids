@@ -1,4 +1,4 @@
-extends InteractiveEntity
+extends RigidBody2D
 
 @export var modifier_strategy: BaseModifierStrategy
 

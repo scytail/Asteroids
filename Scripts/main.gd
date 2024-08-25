@@ -26,13 +26,6 @@ func _unhandled_key_input(event):
 		$HUD/Pause.toggle_paused()
 
 
-func _unhandled_input(event):
-	if OS.is_debug_build():
-		if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-				_spawn_asteroid(event.position, 0.0, Vector2())
-
-
 func _spawn_asteroid(location: Vector2, direction: float, velocity: Vector2):
 	# Make an asteroid
 	var selected_index = randi_range(0, asteroid_scene.size() - 1)

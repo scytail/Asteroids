@@ -1,8 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt3xhfsk3hlxs"]
+[gd_scene load_steps=9 format=3 uid="uid://bt3xhfsk3hlxs"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_4b7ky"]
 [ext_resource type="Texture2D" uid="uid://bmcdixfo0dckl" path="res://Images/kenney_simple-space/simpleSpace_tilesheet.png" id="1_bob0x"]
+[ext_resource type="Script" path="res://Scripts/control schemes/static_direction_control_scheme.gd" id="2_klwew"]
 [ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="3_bvr5u"]
+
+[sub_resource type="Resource" id="Resource_4ofik"]
+script = ExtResource("2_klwew")
+move_speed = 500.0
+rotate_speed = 0.0
+primary_cooldown = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fu43"]
 size = Vector2(16, 31)
@@ -23,7 +30,11 @@ lock_rotation = true
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_4b7ky")
-max_speed = 500
+control_scheme = SubResource("Resource_4ofik")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.8, 1.55)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -44,3 +55,4 @@ script = ExtResource("3_bvr5u")
 length = 3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

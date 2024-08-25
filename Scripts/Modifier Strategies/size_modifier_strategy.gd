@@ -4,7 +4,7 @@ extends BaseModifierStrategy
 @export var size_multiplier: float = 1.1
 @export var bullet_scale_limit: Vector2 = Vector2(.1, 3)
 
-func apply_modifier(entity: InteractiveEntity):
+func apply_modifier(entity: Controllable):
 	# Scaling a rigidbody is apparently a big no-no in godot. Instead, iterate over the children
 	# and scale them all manually, while leaving the main node at a standard scale. Kinda jank.
 	for child in entity.get_children():

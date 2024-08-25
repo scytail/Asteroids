@@ -31,9 +31,6 @@ script = ExtResource("1_hur88")
 
 [node name="Player" parent="." instance=ExtResource("1_21iwi")]
 position = Vector2(960, 540)
-engine_power = 300
-rotate_speed = 200
-max_speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 

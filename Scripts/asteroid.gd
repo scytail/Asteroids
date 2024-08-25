@@ -1,4 +1,4 @@
-extends InteractiveEntity
+extends Controllable
 
 @export var max_rotation_velocity: int = 5
 @export var point_value: int = 1
@@ -9,7 +9,6 @@ signal destroyed(point_value)
 
 
 func _ready():
-	super._ready()
 	angular_velocity = randi_range(-max_rotation_velocity, max_rotation_velocity)
 
 
