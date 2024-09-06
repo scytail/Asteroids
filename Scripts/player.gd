@@ -15,9 +15,9 @@ func activate_primary():
 	super.activate_primary()
 	
 	var bullet = bullet_scene.instantiate()
-	bullet.position = $BulletSpawnLocation.global_position
+	bullet.position = $Turret/BulletSpawnLocation.global_position
 	# Start the bullet out pointing in the direction of the ship. It'll handle pointing from there
-	bullet.rotation = rotation
+	bullet.rotation = $Turret.global_rotation
 	
 	# Modify bullet
 	for modifier in bullet_modifier_strategies:
