@@ -26,7 +26,7 @@ func move(_state: PhysicsDirectBodyState2D, entity: RigidBody2D):
 	
 	if impulse_strength != 0:
 		entity.apply_central_force(Vector2(sin(entity.rotation), -cos(entity.rotation)) * impulse_strength)
-	
+		
 
 func should_activate_primary(state: PhysicsDirectBodyState2D):
 	return Input.is_action_pressed("shoot") && super.should_activate_primary(state)

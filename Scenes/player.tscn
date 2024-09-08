@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmt850puws3s5"]
+[gd_scene load_steps=14 format=3 uid="uid://cmt850puws3s5"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bwcwo"]
 [ext_resource type="PackedScene" uid="uid://bt3xhfsk3hlxs" path="res://Scenes/bullet.tscn" id="2_sq3wq"]
 [ext_resource type="Script" path="res://Scripts/control schemes/user_input_control_scheme.gd" id="3_y6sco"]
 [ext_resource type="Texture2D" uid="uid://bdqlpf51qfegb" path="res://Images/player_wings_image.png" id="4_57iuu"]
 [ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="4_acn3i"]
+[ext_resource type="Texture2D" uid="uid://cdyp6mxb4qvi" path="res://Images/circle.png" id="5_kh2v7"]
 [ext_resource type="Texture2D" uid="uid://dt4ghoesa7ths" path="res://Images/player_center_image.png" id="6_a5l6v"]
 [ext_resource type="Script" path="res://Scripts/player_turret.gd" id="7_uduqh"]
 
@@ -21,7 +22,7 @@ primary_cooldown = 500.0
 size = Vector2(96, 34)
 
 [sub_resource type="Curve" id="Curve_0pfsr"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.258537, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.032372, 0, 0, Vector2(0.258537, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_kucfv"]
@@ -34,10 +35,10 @@ collision_layer = 17
 collision_mask = 26
 physics_material_override = SubResource("PhysicsMaterial_8fnmd")
 gravity_scale = 0.0
-linear_damp_mode = 1
-linear_damp = 0.1
+linear_damp = 0.75
 script = ExtResource("1_bwcwo")
 bullet_scene = ExtResource("2_sq3wq")
+booster_max_size = Vector2(0.25, 0.25)
 control_scheme = SubResource("Resource_vmqlv")
 metadata/_edit_group_ = true
 
@@ -51,26 +52,62 @@ region_rect = Rect2(448, 0, 64, 64)
 shape = SubResource("RectangleShape2D_ldt2d")
 
 [node name="TrailOriginL" type="Marker2D" parent="."]
-position = Vector2(-32, 17)
+position = Vector2(-32, 15)
+
+[node name="BoosterCircle" type="TextureRect" parent="TrailOriginL"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.194616, 0.194616)
+pivot_offset = Vector2(50, 0)
+texture = ExtResource("5_kh2v7")
+expand_mode = 1
 
 [node name="Line2D" type="Line2D" parent="TrailOriginL"]
+width = 15.0
 width_curve = SubResource("Curve_0pfsr")
 gradient = SubResource("Gradient_kucfv")
 joint_mode = 1
 antialiased = true
 script = ExtResource("4_acn3i")
-length = 200
+length = 50
 
 [node name="TrailOriginR" type="Marker2D" parent="."]
-position = Vector2(33, 17)
+position = Vector2(33, 15)
+
+[node name="BoosterCircle" type="TextureRect" parent="TrailOriginR"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.194616, 0.194616)
+pivot_offset = Vector2(50, 0)
+texture = ExtResource("5_kh2v7")
+expand_mode = 1
 
 [node name="Line2D" type="Line2D" parent="TrailOriginR"]
+width = 15.0
 width_curve = SubResource("Curve_0pfsr")
 gradient = SubResource("Gradient_kucfv")
 joint_mode = 1
 antialiased = true
 script = ExtResource("4_acn3i")
-length = 200
+length = 50
 
 [node name="Turret" type="Sprite2D" parent="."]
 scale = Vector2(0.19, 0.19)
