@@ -2,7 +2,7 @@ class_name UserInputControlScheme
 extends BaseControlScheme
 
 
-func rotate(state: PhysicsDirectBodyState2D, _entity: RigidBody2D):
+func rotate(state: PhysicsDirectBodyState2D, entity: RigidBody2D):
 	var rotation_velocity = 0
 	if Input.is_action_pressed("rotate_left"):
 		rotation_velocity = -1
@@ -10,11 +10,7 @@ func rotate(state: PhysicsDirectBodyState2D, _entity: RigidBody2D):
 		rotation_velocity = 1
 
 	if rotation_velocity != 0:
-		rotation_velocity *= rotate_speed * state.step
-		
-		state.angular_velocity = rotation_velocity
-	else:
-		state.angular_velocity = 0
+		entity.apply_torque(rotation_velocity*rotate_speed)
 
 
 func move(_state: PhysicsDirectBodyState2D, entity: RigidBody2D):

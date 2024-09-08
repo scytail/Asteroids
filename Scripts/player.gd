@@ -16,7 +16,7 @@ func _integrate_forces(state):
 	super._integrate_forces(state)
 	
 	var speed = sqrt(state.linear_velocity.x**2 + state.linear_velocity.y**2)
-	var scalar = Vector2(speed, speed)/2.0 * booster_velocity_ratio
+	var scalar = Vector2(speed, speed) * booster_velocity_ratio/2.0
 	
 	scalar = scalar.clamp(Vector2(), booster_max_size) - Vector2(randf_range(0, booster_tremble), 0)
 	$TrailOriginL/BoosterCircle.scale = scalar
