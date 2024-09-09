@@ -15,12 +15,12 @@ primary_cooldown = 0.0
 size = Vector2(16, 31)
 
 [sub_resource type="Curve" id="Curve_u5ck7"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.747024, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_s5lef"]
-offsets = PackedFloat32Array(0, 0.50303, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0, 0.478431, 1, 0.384314, 0, 1)
+offsets = PackedFloat32Array(0, 0.402027)
+colors = PackedColorArray(1, 0.384314, 0, 1, 1, 1, 0, 1)
 
 [node name="Bullet" type="RigidBody2D" groups=["projectiles"]]
 collision_layer = 4
@@ -41,6 +41,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5fu43")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_bob0x")
 region_enabled = true
 region_rect = Rect2(64, 0, 64, 64)
